@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh-cn"><head>
     <meta charset="utf-8">
-    <title>tags | LC</title>
+    <title>LC</title>
     <meta name="author" content="Luke Chen">
     <meta name="description" content="">
     <meta name="keywords" content="">
@@ -34,6 +34,8 @@
 
 
 
+
+<script src="/js/lib/home.js"></script>
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -157,242 +159,135 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div id="archives">
+            <div id="home-head">
+    <div id="home-background" ref="homeBackground" data-images="/images/bg01.jpg,/images/bg02.jpg,/images/bg06.jpg,/images/bg07.jpg"></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>LC</h1>
+                <h3>可能是一个博客</h3>
+                <h5></h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div id="home-posts-wrap" ref="homePostsWrap" true="">
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/2025/01/27/hello-world/">
+        <h2 class="post-title"></h2><h1>Hello World
+</h1>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/1/27
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre="">
+            
+            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2025/01/27/hello-world/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
     
-    <div class="categories-tags">
-        
-        
-        
-        <span>
-            <a href="/tags/%E5%AE%B5%E5%AE%AB/" style="background: #ffa2c4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                宵宫
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E5%88%BB%E6%99%B4/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                刻晴
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E7%94%98%E9%9B%A8/" style="background: #03a9f4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                甘雨
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E8%8D%A7/" style="background: #ffa2c4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                荧
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E7%8F%8A%E7%91%9A%E5%AE%AB%E5%BF%83%E6%B5%B7/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                珊瑚宫心海
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E7%A5%9E%E9%87%8C%E7%BB%AB%E5%8D%8E/" style="background: #03a9f4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                神里绫华
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E9%9B%B7%E7%94%B5%E5%B0%86%E5%86%9B/" style="background: #ffa2c4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                雷电将军
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E5%A6%AE%E9%9C%B2/" style="background: #00a596">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                妮露
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E5%85%AB%E9%87%8D%E7%A5%9E%E5%AD%90/" style="background: #03a9f4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                八重神子
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E4%BC%8A%E8%95%BE%E5%A8%9C/" style="background: #00a596">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                伊蕾娜
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E5%85%89/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                光
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E5%AF%B9%E7%AB%8B/" style="background: #03a9f4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                对立
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E8%8F%B2%E8%B0%A2%E5%B0%94/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                菲谢尔
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E5%8F%AF%E8%8E%89/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                可莉
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E7%88%B1%E6%89%98-%E9%9C%B2%E5%A8%9C-%E7%BA%A2-%E5%BF%98%E5%8D%B4-%E5%92%B2%E5%BC%A5-%E7%88%B1%E4%B8%BD%E4%B8%9D-%E5%9D%A6%E5%B0%BC%E5%B0%94-%E6%8B%89%E6%A0%BC%E5%85%B0-%E5%8D%A1%E6%88%8E-%E7%99%BD%E5%A7%AC/" style="background: #ffa2c4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                爱托 &amp; 露娜 &amp; 红 &amp; 忘却 &amp; 咲弥 &amp; 爱丽丝 &amp; 坦尼尔 &amp; 拉格兰 &amp; 卡戎 &amp; 白姬
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E7%BA%B3%E8%A5%BF%E5%A6%B2/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                纳西妲
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E7%BB%AE%E8%89%AF%E8%89%AF/" style="background: #03a9f4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                绮良良
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E8%8A%AD%E8%8A%AD%E6%8B%89/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                芭芭拉
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E5%B8%8C%E5%84%BF/" style="background: #03a9f4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                希儿
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E5%B8%83%E6%B4%9B%E5%A6%AE%E5%A8%85/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                布洛妮娅
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E6%B5%8B%E8%AF%95/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                测试
-            </a>
-        </span>
-        
-        
+    <a class="page-num" href="/page/3/">
+        <i class="fa-solid fa-caret-left fa-fw"></i>
+    </a>
+    <a class="page-num" href="/">1</a>
+    <span class="page-omit">...</span>
+    
+    <span class="current">4</span>
+    
+    
+    
+    
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/LC.png" alt="avatar">
+        </div>
+        <div class="name">Luke Chen</div>
+        <div class="description">
+            <p>这里应该写一些描述<br>但是我懒得写</p>
+
+        </div>
+        
+        <div class="icon-links">
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://github.com/LukeChen-j">
+                    <i class="fa-brands fa-github fa-fw"></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://space.bilibili.com/40300874">
+                    <i class="fa-brands fa-bilibili fa-fw"></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/_Luke_Chen_">
+                    <i class="fa-brands fa-zhihu fa-fw"></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://steamcommunity.com/id/luke_chen/">
+                    <i class="fa-brands fa-steam fa-fw"></i>
+                </a>
+            </span>
+            
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Argvchs</a>
+            </div>
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://brkhu.fun">Brkhu</a>
+            </div>
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://algebratv.com/">OPTV</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
     </div>
     
 </div>
