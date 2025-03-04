@@ -230,6 +230,16 @@
     padding: 5px;
     width: 35px;
 }
+#home-posts .page-current .current_ {
+    border-radius: 5px;
+    color: #999999;
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    margin: 0 7px;
+    padding: 5px;
+    width: 35px;
+}
 #home-posts .page-current .page-num,
 #home-posts .page-current .page-omit {
     border-radius: 5px;
