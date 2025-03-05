@@ -144,6 +144,10 @@
     background: #66afef;
     color: #fff;
 }
+#home-posts .page-current-short .page-num:hover {
+    background: #66afef;
+    color: #fff;
+}
 #home-card #card-div .icon-links,
 #home-card #card-div .friend-links {
     border-top: #cdcdcd solid 1px;
@@ -251,6 +255,48 @@
     width: 35px;
 }
 #home-posts .page-current a {
+    color: #999;
+}
+#home-posts .page-current-short {
+    align-items: center;
+    display: none;
+    font-weight: bold;
+    justify-content: center;
+    margin-top: 50px;
+    text-align: center;
+    width: 100%;
+}
+#home-posts .page-current-short .current {
+    border-radius: 5px;
+    color: #da0a51;
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    margin: 0 7px;
+    padding: 5px;
+    width: 35px;
+}
+#home-posts .page-current-short .current_ {
+    border-radius: 5px;
+    color: #999999;
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    margin: 0 7px;
+    padding: 5px;
+    width: 35px;
+}
+#home-posts .page-current-short .page-num,
+#home-posts .page-current-short .page-omit {
+    border-radius: 5px;
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    margin: 0 7px;
+    padding: 5px;
+    width: 35px;
+}
+#home-posts .page-current-short a {
     color: #999;
 }
 #home-posts .post {
@@ -694,7 +740,8 @@ video,
 .icon-link a,
 .katex,
 .language,
-.page-current {
+.page-current,
+.page-current-short {
     user-select: none;
 }
 b,
@@ -891,6 +938,12 @@ ol li {
     #menu #mobile-menu {
         display: none;
     }
+	#home-posts .page-current {
+		display: flex;
+	}
+	#home-posts .page-current-short {
+		display: none;
+	}
     .article,
     #archives,
     #footer #footer-wrap {
@@ -978,6 +1031,12 @@ ol li {
     #menu #mobile-menu {
         display: block;
     }
+	#home-posts .page-current {
+		display: none;
+	}
+	#home-posts .page-current-short {
+		display: flex;
+	}
     ul,
     ol {
         padding-left: 20px;
