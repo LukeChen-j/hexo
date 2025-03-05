@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh-cn"><head>
     <meta charset="utf-8">
-    <title>20250222 | LC</title>
+    <title>加了点新功能 | LC</title>
     <meta name="author" content="Luke Chen">
     <meta name="description" content="">
     <meta name="keywords" content="">
@@ -206,7 +206,7 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>20250222
+        <h1>加了点新功能
 </h1>
     </div>
     <div class="info">
@@ -214,15 +214,15 @@
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2025/2/22
+            2025/3/5
         </span>
         
         <span class="category">
-            <a href="/categories/%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/">
+            <a href="/categories/%E4%B8%80%E4%BA%9B%E8%AE%B0%E5%BD%95/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                一些图片
+                一些记录
             </a>
         </span>
         
@@ -230,18 +230,34 @@
     </div>
     
     <div class="content" v-pre="">
-        <p><img src="https://drive.lukechen.lc/images/waifu/20230509_134723.jpg"></p>
+        <p>修改了主页帖子列表的页码部分。</p>
+<p>每天发的图片已经把为数不多的文章冲到很后面的地方了，于是做了一个只显示文章的主页，点顶部菜单的 <a href="/articles/1/">Articles</a> 就是。</p>
 <span id="more"></span>
 
-<p><img src="https://drive.lukechen.lc/images/waifu/20230509_004541.jpg"></p>
-<p><img src="https://drive.lukechen.lc/images/waifu/20230509_123033.jpg"></p>
-<p><img src="https://drive.lukechen.lc/images/waifu/20230509_123128.jpg"></p>
-<p><img src="https://drive.lukechen.lc/images/waifu/20230509_135626.jpg"></p>
-<p><img src="https://drive.lukechen.lc/images/waifu/20230510_111037.jpg"></p>
-<p><img src="https://drive.lukechen.lc/images/waifu/20230510_112426.jpg"></p>
-<p><img src="https://drive.lukechen.lc/images/waifu/20230510_112540.jpg"></p>
-<p><img src="https://drive.lukechen.lc/images/waifu/20230510_112552.jpg"></p>
-<p><img src="https://drive.lukechen.lc/images/waifu/20230510_114636.jpg"></p>
+<hr>
+<p>我想不通这个主题的作者是在什么精神状况下会认为这种页码是合理的：</p>
+<!-- page-current 的 margin-top 本来是 50px 的，为了美观改了（ -->
+
+<div class="page-current" style="align-items: center; display: flex; font-weight: bold; justify-content: center; margin-top: 0px; text-align: center; width: 100%;">
+	<a class="page-num" style="color: #999; border-radius: 5px; display: inline-block; height: 35px; line-height: 35px; margin: 0 7px; padding: 5px; width: 35px;"><i class="fa-solid fa-caret-left fa-fw"></i></a>
+	<a class="page-num" style="color: #999; border-radius: 5px; display: inline-block; height: 35px; line-height: 35px; margin: 0 7px; padding: 5px; width: 35px;">1</a>
+	<span class="page-omit" style="border-radius: 5px; display: inline-block; height: 35px; line-height: 35px; margin: 0 7px; padding: 5px; width: 35px;">...</span>
+	<span class="current" style="border-radius: 5px; color: #da0a51; display: inline-block; height: 35px; line-height: 35px; margin: 0 7px; padding: 5px; width: 35px;">2</span>
+	<a class="page-num" style="color: #999; border-radius: 5px; display: inline-block; height: 35px; line-height: 35px; margin: 0 7px; padding: 5px; width: 35px;"> 3 </a>
+	<a class="page-num" style="color: #999; border-radius: 5px; display: inline-block; height: 35px; line-height: 35px; margin: 0 7px; padding: 5px; width: 35px;"> 4 </a>
+	<span class="page-omit" style="border-radius: 5px; display: inline-block; height: 35px; line-height: 35px; margin: 0 7px; padding: 5px; width: 35px;">...</span>
+	<a class="page-num" style="color: #999; border-radius: 5px; display: inline-block; height: 35px; line-height: 35px; margin: 0 7px; padding: 5px; width: 35px;">5</a>
+	<a class="page-num" style="color: #999; border-radius: 5px; display: inline-block; height: 35px; line-height: 35px; margin: 0 7px; padding: 5px; width: 35px;"><i class="fa-solid fa-caret-right fa-fw"></i></a>
+</div>
+
+<p>（悬停效果还需要在 css 里面设置，摆了，就当这是个截图吧）</p>
+<p>总之是改了一下，塞了更多的页码，翻页应该会容易。页码多了在我的手机上会很挤，顺便又做了一个给手机用的页码，根据浏览器页面宽度自动切换。</p>
+<hr>
+<p>在顶部菜单加入了 <a href="/articles/1/">Articles</a> 、<a href="/categories/%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/">一些图片</a> 和 <a href="/categories/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/">另一些图片</a> 。</p>
+<p>每天发的图片把其它帖子在主页上挤到很后面去了，于是稍微研究了一下 Hexo，弄了一个排除了这些图片的主页，点顶部菜单的 <a href="/articles/1/">Articles</a> 就是。</p>
+<p>目前虽然传了一些图，但分散在各个帖子里还是不太方便浏览，未来计划做一个专门的页面展示图片，先留个坑。目前在菜单中加入的 <a href="/categories/%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/">一些图片</a> 和 <a href="/categories/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/">另一些图片</a> 只是跳转到对应的帖子分类页面，等展示页面做好了会改。</p>
+<hr>
+<p>继 <a target="_blank" rel="noopener" href="https://brkhu.fun/">Brkhu</a> 和 <a target="_blank" rel="noopener" href="https://algebratv.com/">OPTV</a> 后又新添一友链 <a target="_blank" rel="noopener" href="https://vegetablefj.github.io/blog/">vegetablefj</a> ，可喜可贺，可喜可贺。</p>
 
     </div>
     

@@ -39,6 +39,7 @@
 
 
 
+
 <link rel="stylesheet" href="/css/main.css">
 
 <!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" integrity="sha256-TThEtR+XalhWKkfF383YLOrI50NGNeIqrzS+q08afrY=" crossorigin="anonymous"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
@@ -62,6 +63,11 @@
         <a href="/">
             <i class="fa-solid fa-house fa-fw"></i>
             <span> Home</span>
+        </a>
+        
+        <a href="/articles/1">
+            <i class="fa-solid fa-newspaper fa-fw"></i>
+            <span> Articles</span>
         </a>
         
         <a href="/about">
@@ -89,6 +95,16 @@
             <span> Search</span>
         </a>
         
+        <a href="/categories/%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87">
+            <i class="fa-solid fa-images fa-fw"></i>
+            <span> 一些图片</span>
+        </a>
+        
+        <a href="/categories/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87">
+            <i class="fa-regular fa-images fa-fw"></i>
+            <span> 另一些图片</span>
+        </a>
+        
     </nav>
     <nav id="mobile-menu">
         <div class="title" @click="showMenuItems = !showMenuItems">
@@ -104,6 +120,15 @@
                             <i class="fa-solid fa-house fa-fw"></i>
                         </div>
                         <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/articles/1">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-newspaper fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Articles</div>
                     </div>
                 </a>
                 
@@ -152,6 +177,24 @@
                     </div>
                 </a>
                 
+                <a href="/categories/%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-images fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">一些图片</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-regular fa-images fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">另一些图片</div>
+                    </div>
+                </a>
+                
             </div>
         </transition>
     </nav>
@@ -192,7 +235,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%AE%B5%E5%AE%AB/" style="color: #ffa2c4">
+                <a href="/tags/%E5%AE%B5%E5%AE%AB/" style="color: #00a596">
                     宵宫
                 </a>
             </span>
