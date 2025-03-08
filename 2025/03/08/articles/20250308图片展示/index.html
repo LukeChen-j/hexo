@@ -1,0 +1,753 @@
+<!DOCTYPE html><html lang="zh-cn"><head>
+    <meta charset="utf-8">
+    <title>图片展示 | LC</title>
+    <meta name="author" content="Luke Chen">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="icon" href="/images/icon.png">
+    <link rel="preconnect" href="https://s4.zstatic.net">
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.cn">
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&amp;family=Lexend:wght@400;500;600;700;800;900&amp;family=Noto+Sans+SC:wght@400;500;600;700;800;900&amp;display=swap">
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<script src="/js/gallery.js"></script>
+
+<!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" integrity="sha256-TThEtR+XalhWKkfF383YLOrI50NGNeIqrzS+q08afrY=" crossorigin="anonymous"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/37.json.gif">
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LC</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span> Home</span>
+        </a>
+        
+        <a href="/articles/1">
+            <i class="fa-solid fa-newspaper fa-fw"></i>
+            <span> Articles</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span> About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span> Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span> Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span> Tags</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-magnifying-glass fa-fw"></i>
+            <span> Search</span>
+        </a>
+        
+        <a href="/categories/%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87">
+            <i class="fa-solid fa-images fa-fw"></i>
+            <span> 一些图片</span>
+        </a>
+        
+        <a href="/categories/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87">
+            <i class="fa-regular fa-images fa-fw"></i>
+            <span> 另一些图片</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span> LC</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/articles/1">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-newspaper fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Articles</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-magnifying-glass fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Search</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-images fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">一些图片</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-regular fa-images fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">另一些图片</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>图片展示
+</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/3/8
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E4%B8%80%E4%BA%9B%E8%AE%B0%E5%BD%95/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                一些记录
+            </a>
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre="">
+        <p>为了集中展示图片，花了半天时间研究了一下 HTML 和 JavaScript，最终写出来了 <code>gallery.js</code> 。</p>
+<p>源码就不贴了，反正是网站的加载项，看眼网站源码就能找到。</p>
+<p>灵感发自我的手机（不是）。三星的系统相册在预览图片时有这么一种模式，我觉得挺有意思，就尝试复刻了。</p>
+<span id="more"></span>
+
+<p>也算是体验了一下自然语言编程（确信）。我把代码逻辑描述给 Gemini 2.0 Flash Thinking Experimental 01-21 ，它帮我翻译为代码，还顺便规范了变量命名外加指出了我的拼写错误。</p>
+<p>把目前为止发出来的和准备发出来的图片乱序贴在这里了，效果感觉还不错。</p>
+<p>之后有机会了再做一个专门展示图片的页面好了。</p>
+<details>
+<summary>内容有点多，折叠一下（点击展开/折叠内容）</summary>
+<div class="l-gallery">
+<div class="l-image" data-height="2047" data-width="1211" style="background-color: #FAEFED;"><img path="https://drive.lukechen.lc/images/waifu/20230425_222503.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1505" data-width="1062" style="background-color: #535272;"><img path="https://drive.lukechen.lc/images/waifu/20230317_182714.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1414" data-width="1000" style="background-color: #E8D8CB;"><img path="https://drive.lukechen.lc/images/waifu/20221208_193807.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1483" data-width="886" style="background-color: #DEEAF7;"><img path="https://drive.lukechen.lc/images/waifu/20230629_013014.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1778" data-width="1200" style="background-color: #5E6170;"><img path="https://drive.lukechen.lc/images/waifu/20230403_010646.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="849" style="background-color: #6CABD1;"><img path="https://drive.lukechen.lc/images/waifu/20230509_134723.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1829" data-width="1225" style="background-color: #E8EAEE;"><img path="https://drive.lukechen.lc/images/waifu/20230612_123946.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1500" data-width="846" style="background-color: #F7F1E4;"><img path="https://drive.lukechen.lc/images/waifu/20230627_191307.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1402" data-width="1033" style="background-color: #E0E5F0;"><img path="https://drive.lukechen.lc/images/waifu/20230612_163753.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1044" data-width="744" style="background-color: #131522;"><img path="https://drive.lukechen.lc/images/waifu/20230602_191037.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3000" data-width="2117" style="background-color: #33211B;"><img path="https://drive.lukechen.lc/images/waifu/20221202_020932.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1740" data-width="979" style="background-color: #3F163E;"><img path="https://drive.lukechen.lc/images/waifu/20230508_095752.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2892" style="background-color: #EFEEC0;"><img path="https://drive.lukechen.lc/images/waifu/20230616_011008.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1771" data-width="1254" style="background-color: #9E9890;"><img path="https://drive.lukechen.lc/images/waifu/20230323_022146.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2150" data-width="3825" style="background-color: #EFE8DD;"><img path="https://drive.lukechen.lc/images/waifu/20221203_201415.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1848" data-width="1189" style="background-color: #FAE9D4;"><img path="https://drive.lukechen.lc/images/waifu/20230616_102631.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3508" data-width="2480" style="background-color: #FAF7F7;"><img path="https://drive.lukechen.lc/images/waifu/20230515_105355.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2354" data-width="1313" style="background-color: #84A2C7;"><img path="https://drive.lukechen.lc/images/waifu/20230616_102133.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2573" data-width="1608" style="background-color: #91A5C2;"><img path="https://drive.lukechen.lc/images/waifu/20230616_102327.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1600" data-width="1159" style="background-color: #3C2330;"><img path="https://drive.lukechen.lc/images/waifu/20230323_100621.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2731" style="background-color: #262320;"><img path="https://drive.lukechen.lc/images/waifu/20230218_191817.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1086" data-width="780" style="background-color: #F8E7E0;"><img path="https://drive.lukechen.lc/images/waifu/20230218_185707.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1044" data-width="744" style="background-color: #202331;"><img path="https://drive.lukechen.lc/images/waifu/20230218_192738.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1044" data-width="744" style="background-color: #1D1C27;"><img path="https://drive.lukechen.lc/images/waifu/20230602_191041.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1678" data-width="1000" style="background-color: #DADCE6;"><img path="https://drive.lukechen.lc/images/waifu/20230605_114300.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3325" data-width="2282" style="background-color: #E9DBD5;"><img path="https://drive.lukechen.lc/images/waifu/20230501_014846.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3174" data-width="2208" style="background-color: #10212C;"><img path="https://drive.lukechen.lc/images/waifu/20221203_022139.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2057" data-width="1552" style="background-color: #875342;"><img path="https://drive.lukechen.lc/images/waifu/20230509_123128.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1114" data-width="800" style="background-color: #D7D6F5;"><img path="https://drive.lukechen.lc/images/waifu/20230516_144958.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2701" data-width="1688" style="background-color: #F8F1D4;"><img path="https://drive.lukechen.lc/images/waifu/20230616_102232.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4092" data-width="2618" style="background-color: #8E9FC5;"><img path="https://drive.lukechen.lc/images/waifu/20230616_101459.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1553" data-width="1110" style="background-color: #1F202F;"><img path="https://drive.lukechen.lc/images/waifu/20230614_180140.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3541" data-width="2507" style="background-color: #686765;"><img path="https://drive.lukechen.lc/images/waifu/20230323_022104.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1640" data-width="1158" style="background-color: #F5E5E1;"><img path="https://drive.lukechen.lc/images/waifu/20230508_095757.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2717" style="background-color: #7DA8BD;"><img path="https://drive.lukechen.lc/images/waifu/20230602_030727.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2394" data-width="1695" style="background-color: #B991A9;"><img path="https://drive.lukechen.lc/images/waifu/20230526_184335.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1416" data-width="1003" style="background-color: #F9ECE5;"><img path="https://drive.lukechen.lc/images/waifu/20230514_214839.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1412" data-width="1000" style="background-color: #CADBF2;"><img path="https://drive.lukechen.lc/images/waifu/20230701_001525.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1448" style="background-color: #EBDDE3;"><img path="https://drive.lukechen.lc/images/waifu/20230510_214233.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3508" data-width="2480" style="background-color: #F4F0F0;"><img path="https://drive.lukechen.lc/images/waifu/20230515_105423.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1416" data-width="1003" style="background-color: #FBDFD5;"><img path="https://drive.lukechen.lc/images/waifu/20230509_004525.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2458" style="background-color: #E5DED4;"><img path="https://drive.lukechen.lc/images/waifu/20230602_030720.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3000" data-width="2000" style="background-color: #EAD9CA;"><img path="https://drive.lukechen.lc/images/waifu/20230602_030833.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2047" data-width="1103" style="background-color: #F7F0E0;"><img path="https://drive.lukechen.lc/images/waifu/20230508_095900.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1505" data-width="1062" style="background-color: #535375;"><img path="https://drive.lukechen.lc/images/waifu/20230503_115500.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2046" data-width="1447" style="background-color: #E8D3DC;"><img path="https://drive.lukechen.lc/images/waifu/20230506_180901.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1202" data-width="850" style="background-color: #F4E5E2;"><img path="https://drive.lukechen.lc/images/waifu/20230514_130548.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3897" data-width="2422" style="background-color: #F9F2EF;"><img path="https://drive.lukechen.lc/images/waifu/20230615_200148.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1947" data-width="1200" style="background-color: #CD9670;"><img path="https://drive.lukechen.lc/images/waifu/20230214_235238.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1684" data-width="1191" style="background-color: #705C4E;"><img path="https://drive.lukechen.lc/images/waifu/20221028_173512.jpg" loading="lazy"></div>
+<div class="l-image" data-height="900" data-width="684" style="background-color: #C3E0FA;"><img path="https://drive.lukechen.lc/images/waifu/20230508_103417.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3859" data-width="2729" style="background-color: #EADBE1;"><img path="https://drive.lukechen.lc/images/waifu/20230313_003959.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1719" data-width="1215" style="background-color: #F7DECC;"><img path="https://drive.lukechen.lc/images/waifu/20230508_095857.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2314" data-width="4096" style="background-color: #C0A676;"><img path="https://drive.lukechen.lc/images/waifu/20221203_022109.jpg" loading="lazy"></div>
+<div class="l-image" data-height="980" data-width="683" style="background-color: #F0E2D3;"><img path="https://drive.lukechen.lc/images/waifu/20230504_022416.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4066" data-width="2637" style="background-color: #EFE9DC;"><img path="https://drive.lukechen.lc/images/cosplay/20221219_033220.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1248" style="background-color: #F6E6D7;"><img path="https://drive.lukechen.lc/images/waifu/20230525_182128.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1226" data-width="800" style="background-color: #F4EAE8;"><img path="https://drive.lukechen.lc/images/waifu/20230610_013712.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1852" data-width="1115" style="background-color: #F4DCD1;"><img path="https://drive.lukechen.lc/images/waifu/20230505_135200.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1505" data-width="1062" style="background-color: #43567D;"><img path="https://drive.lukechen.lc/images/waifu/20230317_182730.jpg" loading="lazy"></div>
+<div class="l-image" data-height="844" data-width="600" style="background-color: #934534;"><img path="https://drive.lukechen.lc/images/waifu/20230220_004341.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1199" data-width="848" style="background-color: #EEE6E9;"><img path="https://drive.lukechen.lc/images/waifu/20221219_035604.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1681" data-width="1187" style="background-color: #8F98AA;"><img path="https://drive.lukechen.lc/images/waifu/20230508_103021.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2938" data-width="1756" style="background-color: #59606B;"><img path="https://drive.lukechen.lc/images/waifu/20230220_194144.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2730" style="background-color: #301218;"><img path="https://drive.lukechen.lc/images/cosplay/20221130_141945.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2606" style="background-color: #E2EDF8;"><img path="https://drive.lukechen.lc/images/waifu/20230629_013018.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2292" style="background-color: #C69B78;"><img path="https://drive.lukechen.lc/images/waifu/20230616_101858.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3845" data-width="2685" style="background-color: #122530;"><img path="https://drive.lukechen.lc/images/waifu/20221203_022121.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1759" data-width="978" style="background-color: #EBDFE6;"><img path="https://drive.lukechen.lc/images/waifu/20230331_021844.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="3001" style="background-color: #ECE7C3;"><img path="https://drive.lukechen.lc/images/waifu/20230215_200936.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2585" data-width="1700" style="background-color: #F1DFD3;"><img path="https://drive.lukechen.lc/images/waifu/20230422_202313.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1589" data-width="1200" style="background-color: #3A262A;"><img path="https://drive.lukechen.lc/images/waifu/20230323_100624.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1600" data-width="1222" style="background-color: #2E2128;"><img path="https://drive.lukechen.lc/images/waifu/20230323_100617.jpg" loading="lazy"></div>
+<div class="l-image" data-height="840" data-width="1120" style="background-color: #F0DFD6;"><img path="https://drive.lukechen.lc/images/waifu/20230508_205348.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2039" data-width="1378" style="background-color: #FBF4EB;"><img path="https://drive.lukechen.lc/images/waifu/20230326_121506.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2563" style="background-color: #F2DDC8;"><img path="https://drive.lukechen.lc/images/waifu/20230612_124102.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3000" data-width="2377" style="background-color: #4C577B;"><img path="https://drive.lukechen.lc/images/waifu/20230601_160150.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1756" data-width="2479" style="background-color: #B791A1;"><img path="https://drive.lukechen.lc/images/waifu/20230306_004611.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2400" data-width="1697" style="background-color: #F2DCC6;"><img path="https://drive.lukechen.lc/images/waifu/20230306_101209.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2647" style="background-color: #F3E9E2;"><img path="https://drive.lukechen.lc/images/waifu/20230228_122029.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1044" data-width="744" style="background-color: #1C1E2A;"><img path="https://drive.lukechen.lc/images/waifu/20230602_190926.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2312" style="background-color: #D7E2F4;"><img path="https://drive.lukechen.lc/images/waifu/20230612_124009.jpg" loading="lazy"></div>
+<div class="l-image" data-height="849" data-width="1200" style="background-color: #BB93B3;"><img path="https://drive.lukechen.lc/images/waifu/20230617_235054.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1839" data-width="1300" style="background-color: #F9E7DC;"><img path="https://drive.lukechen.lc/images/waifu/20230228_115829.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1298" style="background-color: #FDF6F4;"><img path="https://drive.lukechen.lc/images/waifu/20230616_101512.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2419" data-width="1361" style="background-color: #8E94CC;"><img path="https://drive.lukechen.lc/images/waifu/20230616_102524.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1322" style="background-color: #CFE6F6;"><img path="https://drive.lukechen.lc/images/waifu/20230614_212948.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2951" data-width="2214" style="background-color: #B29F8D;"><img path="https://drive.lukechen.lc/images/cosplay/20221130_141952.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1070" data-width="758" style="background-color: #BB9086;"><img path="https://drive.lukechen.lc/images/waifu/20230218_185813.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="811" style="background-color: #D3E9F8;"><img path="https://drive.lukechen.lc/images/waifu/20221231_232236.jpg" loading="lazy"></div>
+<div class="l-image" data-height="840" data-width="1200" style="background-color: #8D9DCE;"><img path="https://drive.lukechen.lc/images/waifu/20230617_235206.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1706" data-width="1200" style="background-color: #B4A08D;"><img path="https://drive.lukechen.lc/images/waifu/20221112_183630.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2688" data-width="1665" style="background-color: #7AA4CA;"><img path="https://drive.lukechen.lc/images/waifu/20230616_102104.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="922" style="background-color: #FAE5DB;"><img path="https://drive.lukechen.lc/images/waifu/20230617_235853.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1707" data-width="1100" style="background-color: #F3E4D7;"><img path="https://drive.lukechen.lc/images/waifu/20230220_200733.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3223" data-width="2422" style="background-color: #212126;"><img path="https://drive.lukechen.lc/images/waifu/20230509_135626.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1505" data-width="1062" style="background-color: #B9A498;"><img path="https://drive.lukechen.lc/images/waifu/20230317_182709.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1227" data-width="704" style="background-color: #F6E5DF;"><img path="https://drive.lukechen.lc/images/waifu/20230508_095715.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1264" style="background-color: #F8E4D5;"><img path="https://drive.lukechen.lc/images/waifu/20230612_164027.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2006" data-width="1416" style="background-color: #3C6082;"><img path="https://drive.lukechen.lc/images/waifu/20230317_182723.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1694" data-width="1200" style="background-color: #F7F1E6;"><img path="https://drive.lukechen.lc/images/waifu/20230326_121638.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1358" data-width="907" style="background-color: #845A45;"><img path="https://drive.lukechen.lc/images/waifu/20230331_113656.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3385" data-width="2318" style="background-color: #21212A;"><img path="https://drive.lukechen.lc/images/waifu/20230529_093224.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3508" data-width="2480" style="background-color: #F5DAD4;"><img path="https://drive.lukechen.lc/images/waifu/20230616_101358.jpg" loading="lazy"></div>
+<div class="l-image" data-height="900" data-width="615" style="background-color: #3C5A83;"><img path="https://drive.lukechen.lc/images/waifu/20230508_103308.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1254" data-width="885" style="background-color: #F6EBDF;"><img path="https://drive.lukechen.lc/images/waifu/20230317_182657.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2339" data-width="1654" style="background-color: #F7D8CC;"><img path="https://drive.lukechen.lc/images/waifu/20230616_101409.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2897" style="background-color: #F1DDD6;"><img path="https://drive.lukechen.lc/images/waifu/20230518_173348.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1433" data-width="1013" style="background-color: #BDE5F5;"><img path="https://drive.lukechen.lc/images/waifu/20230629_012659.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2775" style="background-color: #FAE9E0;"><img path="https://drive.lukechen.lc/images/waifu/20230612_163757.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1254" style="background-color: #F1E9E6;"><img path="https://drive.lukechen.lc/images/waifu/20230510_214406.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1450" style="background-color: #F2F1DD;"><img path="https://drive.lukechen.lc/images/waifu/20230323_022153.jpg" loading="lazy"></div>
+<div class="l-image" data-height="965" data-width="682" style="background-color: #F2E5DF;"><img path="https://drive.lukechen.lc/images/waifu/20221207_025008.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1450" data-width="1036" style="background-color: #DFF7F0;"><img path="https://drive.lukechen.lc/images/waifu/20230510_213847.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3082" data-width="1882" style="background-color: #FAEDE7;"><img path="https://drive.lukechen.lc/images/waifu/20230614_212145.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3278" data-width="1954" style="background-color: #EAD8E2;"><img path="https://drive.lukechen.lc/images/waifu/20230627_192750.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1390" style="background-color: #29282E;"><img path="https://drive.lukechen.lc/images/waifu/20230528_032512.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1212" style="background-color: #516374;"><img path="https://drive.lukechen.lc/images/waifu/20230422_091959.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4093" data-width="2894" style="background-color: #16232F;"><img path="https://drive.lukechen.lc/images/waifu/20230616_101546.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2300" data-width="1290" style="background-color: #FBF3EE;"><img path="https://drive.lukechen.lc/images/waifu/20230303_134120.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2919" style="background-color: #B99F91;"><img path="https://drive.lukechen.lc/images/waifu/20221113_205752.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2396" data-width="1364" style="background-color: #C79D84;"><img path="https://drive.lukechen.lc/images/waifu/20230304_182835.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1199" data-width="855" style="background-color: #F6E8E1;"><img path="https://drive.lukechen.lc/images/waifu/20230228_224124.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2458" style="background-color: #E9DBCB;"><img path="https://drive.lukechen.lc/images/waifu/20230602_030656.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2654" style="background-color: #F4DFC5;"><img path="https://drive.lukechen.lc/images/waifu/20230331_113652.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1567" data-width="2048" style="background-color: #FAE4CD;"><img path="https://drive.lukechen.lc/images/waifu/20230612_164024.jpg" loading="lazy"></div>
+<div class="l-image" data-height="980" data-width="653" style="background-color: #F3EDE6;"><img path="https://drive.lukechen.lc/images/waifu/20230110_184353.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2479" data-width="1756" style="background-color: #EEDFD8;"><img path="https://drive.lukechen.lc/images/waifu/20230517_133847.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2047" data-width="1447" style="background-color: #F8D9D0;"><img path="https://drive.lukechen.lc/images/waifu/20230516_145747.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1447" data-width="1020" style="background-color: #FAF1E6;"><img path="https://drive.lukechen.lc/images/waifu/20230508_100039.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1440" data-width="2560" style="background-color: #1D2230;"><img path="https://drive.lukechen.lc/images/waifu/20230313_011611.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1524" data-width="1016" style="background-color: #26130C;"><img path="https://drive.lukechen.lc/images/cosplay/20230427_025105.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1634" data-width="1200" style="background-color: #321E1A;"><img path="https://drive.lukechen.lc/images/waifu/20230627_191240.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2304" style="background-color: #F3E3CC;"><img path="https://drive.lukechen.lc/images/waifu/20230606_195110.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1274" style="background-color: #F6DFD1;"><img path="https://drive.lukechen.lc/images/waifu/20230603_123019.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2808" data-width="1756" style="background-color: #7AA1D2;"><img path="https://drive.lukechen.lc/images/waifu/20230616_102152.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1044" data-width="744" style="background-color: #282934;"><img path="https://drive.lukechen.lc/images/waifu/20230602_190948.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1448" style="background-color: #AC9BA9;"><img path="https://drive.lukechen.lc/images/waifu/20230327_095632.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2901" data-width="1500" style="background-color: #E4DFE2;"><img path="https://drive.lukechen.lc/images/waifu/20230303_134026.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3000" data-width="1989" style="background-color: #BDDAF7;"><img path="https://drive.lukechen.lc/images/waifu/20230601_160200.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1505" data-width="1062" style="background-color: #F6E2D8;"><img path="https://drive.lukechen.lc/images/waifu/20230317_184032.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1012" data-width="717" style="background-color: #EFE3D7;"><img path="https://drive.lukechen.lc/images/waifu/20230508_095504.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1600" data-width="1131" style="background-color: #F7EDEE;"><img path="https://drive.lukechen.lc/images/waifu/20230323_100641.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1152" data-width="1241" style="background-color: #644E62;"><img path="https://drive.lukechen.lc/images/waifu/20230215_000821.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1505" data-width="1062" style="background-color: #495774;"><img path="https://drive.lukechen.lc/images/waifu/20230317_182602.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1429" data-width="1644" style="background-color: #FAE9DE;"><img path="https://drive.lukechen.lc/images/waifu/20230508_210241.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3840" data-width="2160" style="background-color: #E7D7CB;"><img path="https://drive.lukechen.lc/images/cosplay/20230305_011332.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1468" style="background-color: #735750;"><img path="https://drive.lukechen.lc/images/waifu/20230327_103245.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1505" data-width="1062" style="background-color: #505870;"><img path="https://drive.lukechen.lc/images/waifu/20230317_182652.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="781" style="background-color: #F6E7E2;"><img path="https://drive.lukechen.lc/images/waifu/20230617_235107.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2313" data-width="1429" style="background-color: #2A1408;"><img path="https://drive.lukechen.lc/images/waifu/20230616_010957.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1680" data-width="1243" style="background-color: #FDF4EF;"><img path="https://drive.lukechen.lc/images/waifu/20230306_100713.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1448" style="background-color: #CF859F;"><img path="https://drive.lukechen.lc/images/waifu/20230616_101416.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1380" style="background-color: #F6E0CD;"><img path="https://drive.lukechen.lc/images/waifu/20230218_013754.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3541" data-width="2508" style="background-color: #DED3DA;"><img path="https://drive.lukechen.lc/images/waifu/20221221_173033.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2526" style="background-color: #131F3B;"><img path="https://drive.lukechen.lc/images/waifu/20230616_010926.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1416" data-width="1003" style="background-color: #F7DCD6;"><img path="https://drive.lukechen.lc/images/waifu/20230509_004541.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1794" data-width="3793" style="background-color: #E4D7DE;"><img path="https://drive.lukechen.lc/images/waifu/20230321_022016.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2456" data-width="1736" style="background-color: #F9EFEC;"><img path="https://drive.lukechen.lc/images/waifu/20230508_205437.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3600" data-width="2042" style="background-color: #F9EAE6;"><img path="https://drive.lukechen.lc/images/waifu/20230321_151614.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1044" data-width="744" style="background-color: #252533;"><img path="https://drive.lukechen.lc/images/waifu/20230602_191002.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2889" data-width="2000" style="background-color: #4B5E7B;"><img path="https://drive.lukechen.lc/images/waifu/20230415_212624.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2523" data-width="1311" style="background-color: #DF966A;"><img path="https://drive.lukechen.lc/images/waifu/20230616_010923.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2930" style="background-color: #746D54;"><img path="https://drive.lukechen.lc/images/waifu/20230209_015451.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2892" style="background-color: #D3F7DD;"><img path="https://drive.lukechen.lc/images/waifu/20230601_160240.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2376" data-width="1584" style="background-color: #F8EAE3;"><img path="https://drive.lukechen.lc/images/waifu/20230418_012747.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2047" data-width="1347" style="background-color: #F1E8E5;"><img path="https://drive.lukechen.lc/images/waifu/20230510_115044.jpg" loading="lazy"></div>
+<div class="l-image" data-height="692" data-width="1234" style="background-color: #C396B6;"><img path="https://drive.lukechen.lc/images/waifu/20230515_005357.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2532" style="background-color: #F6EADD;"><img path="https://drive.lukechen.lc/images/waifu/20230629_013032.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1448" style="background-color: #D5DEE8;"><img path="https://drive.lukechen.lc/images/waifu/20230406_095054.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="840" style="background-color: #785746;"><img path="https://drive.lukechen.lc/images/waifu/20230602_030933.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1233" style="background-color: #2B2930;"><img path="https://drive.lukechen.lc/images/waifu/20230504_021852.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1505" data-width="1062" style="background-color: #725776;"><img path="https://drive.lukechen.lc/images/waifu/20230317_182706.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1504" data-width="1578" style="background-color: #FAF3F0;"><img path="https://drive.lukechen.lc/images/waifu/20230330_014943.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1697" data-width="1200" style="background-color: #F9ECD7;"><img path="https://drive.lukechen.lc/images/waifu/20230510_114925.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2400" data-width="1081" style="background-color: #F7D6CF;"><img path="https://drive.lukechen.lc/images/waifu/20221111_162840.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1664" data-width="1138" style="background-color: #F6E7E1;"><img path="https://drive.lukechen.lc/images/waifu/20230411_143941.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1362" style="background-color: #EFE5DD;"><img path="https://drive.lukechen.lc/images/waifu/20230521_181416.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3000" data-width="1989" style="background-color: #F3E3DB;"><img path="https://drive.lukechen.lc/images/waifu/20230601_160251.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2862" data-width="2026" style="background-color: #121C49;"><img path="https://drive.lukechen.lc/images/waifu/20230616_102122.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3509" data-width="2108" style="background-color: #EFDBD2;"><img path="https://drive.lukechen.lc/images/waifu/20230331_113642.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1239" data-width="979" style="background-color: #F0E2D5;"><img path="https://drive.lukechen.lc/images/waifu/20230508_095730.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1433" data-width="2029" style="background-color: #F6E1EA;"><img path="https://drive.lukechen.lc/images/waifu/20230514_034707.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2006" data-width="1416" style="background-color: #4B4F7C;"><img path="https://drive.lukechen.lc/images/waifu/20230317_182628.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2500" data-width="1632" style="background-color: #F8F0ED;"><img path="https://drive.lukechen.lc/images/waifu/20230420_114139.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1326" style="background-color: #CCA369;"><img path="https://drive.lukechen.lc/images/waifu/20230616_010944.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4093" data-width="2274" style="background-color: #F1E3D9;"><img path="https://drive.lukechen.lc/images/waifu/20230611_031630.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="681" style="background-color: #1D2125;"><img path="https://drive.lukechen.lc/images/waifu/20230617_235826.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1600" data-width="1200" style="background-color: #B68E9E;"><img path="https://drive.lukechen.lc/images/waifu/20230424_095949.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3000" data-width="3423" style="background-color: #FDF9F8;"><img path="https://drive.lukechen.lc/images/waifu/20230601_160211.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1440" data-width="2560" style="background-color: #F6F3F2;"><img path="https://drive.lukechen.lc/images/waifu/20230313_011614.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1720" data-width="1210" style="background-color: #EFE5CC;"><img path="https://drive.lukechen.lc/images/waifu/20230412_141542.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2778" style="background-color: #F2E2DA;"><img path="https://drive.lukechen.lc/images/waifu/20230602_030812.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2898" data-width="2082" style="background-color: #C9F6D9;"><img path="https://drive.lukechen.lc/images/waifu/20230601_160235.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1228" data-width="868" style="background-color: #D3E1EF;"><img path="https://drive.lukechen.lc/images/waifu/20230415_182522.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1207" data-width="1000" style="background-color: #F5EDE1;"><img path="https://drive.lukechen.lc/images/waifu/20230510_112552.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="648" style="background-color: #7C6053;"><img path="https://drive.lukechen.lc/images/waifu/20230617_235023.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2000" data-width="1413" style="background-color: #F0D4E1;"><img path="https://drive.lukechen.lc/images/waifu/20230501_014947.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1567" data-width="974" style="background-color: #D6DDF3;"><img path="https://drive.lukechen.lc/images/waifu/20230508_095913.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1448" style="background-color: #6E4C59;"><img path="https://drive.lukechen.lc/images/waifu/20230605_032644.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2339" data-width="1654" style="background-color: #E1E1D6;"><img path="https://drive.lukechen.lc/images/waifu/20230302_114709.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1932" data-width="1463" style="background-color: #F6E8E1;"><img path="https://drive.lukechen.lc/images/waifu/20230616_011010.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1720" data-width="2952" style="background-color: #1A1D26;"><img path="https://drive.lukechen.lc/images/waifu/20221203_022124.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2088" data-width="1488" style="background-color: #F5E1D3;"><img path="https://drive.lukechen.lc/images/waifu/20230228_224237.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2573" data-width="1470" style="background-color: #FBEEE1;"><img path="https://drive.lukechen.lc/images/waifu/20230616_102545.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1304" data-width="1835" style="background-color: #F1DED5;"><img path="https://drive.lukechen.lc/images/waifu/20230330_014912.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1740" data-width="1200" style="background-color: #D19479;"><img path="https://drive.lukechen.lc/images/waifu/20221112_183611.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1044" data-width="744" style="background-color: #1C1D26;"><img path="https://drive.lukechen.lc/images/waifu/20230602_191044.jpg" loading="lazy"></div>
+<div class="l-image" data-height="900" data-width="742" style="background-color: #BB978D;"><img path="https://drive.lukechen.lc/images/waifu/20230508_103326.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1678" data-width="1100" style="background-color: #1D2138;"><img path="https://drive.lukechen.lc/images/waifu/20230628_144510.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2000" data-width="1384" style="background-color: #EFDAE6;"><img path="https://drive.lukechen.lc/images/waifu/20230331_022803.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1664" data-width="1133" style="background-color: #DADBF5;"><img path="https://drive.lukechen.lc/images/waifu/20230615_111919.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2614" style="background-color: #B2A693;"><img path="https://drive.lukechen.lc/images/waifu/20230616_010825.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1536" style="background-color: #EEE2D3;"><img path="https://drive.lukechen.lc/images/waifu/20230521_171501.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1114" style="background-color: #84A3C7;"><img path="https://drive.lukechen.lc/images/waifu/20230616_010836.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2764" style="background-color: #CF8972;"><img path="https://drive.lukechen.lc/images/cosplay/20230305_011009.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2891" data-width="1144" style="background-color: #F7F3EF;"><img path="https://drive.lukechen.lc/images/waifu/20230616_010933.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2309" style="background-color: #E0E8F1;"><img path="https://drive.lukechen.lc/images/waifu/20230625_145932.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1576" style="background-color: #F7E2D7;"><img path="https://drive.lukechen.lc/images/waifu/20230612_163953.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2000" data-width="1417" style="background-color: #ECE5D1;"><img path="https://drive.lukechen.lc/images/waifu/20230522_031123.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1611" data-width="1190" style="background-color: #EFDED9;"><img path="https://drive.lukechen.lc/images/waifu/20221116_084912.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2261" data-width="1257" style="background-color: #ECE2CE;"><img path="https://drive.lukechen.lc/images/waifu/20230520_042905.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4018" data-width="2783" style="background-color: #C9958D;"><img path="https://drive.lukechen.lc/images/waifu/20230616_011006.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1351" style="background-color: #E4EAF6;"><img path="https://drive.lukechen.lc/images/waifu/20230612_163950.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1326" style="background-color: #C8DDF7;"><img path="https://drive.lukechen.lc/images/waifu/20230327_103237.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2805" style="background-color: #F2E3D6;"><img path="https://drive.lukechen.lc/images/waifu/20230627_192321.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2730" style="background-color: #E2E0F0;"><img path="https://drive.lukechen.lc/images/cosplay/20230303_000528.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1635" data-width="1063" style="background-color: #ECD5DF;"><img path="https://drive.lukechen.lc/images/waifu/20230506_175421.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1440" data-width="2560" style="background-color: #F4EAE8;"><img path="https://drive.lukechen.lc/images/waifu/20230313_011616.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1089" data-width="737" style="background-color: #BB9180;"><img path="https://drive.lukechen.lc/images/waifu/20230617_040650.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2851" style="background-color: #F8F0E9;"><img path="https://drive.lukechen.lc/images/waifu/20230612_163906.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1448" style="background-color: #865B3F;"><img path="https://drive.lukechen.lc/images/waifu/20230305_011629.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1448" style="background-color: #EED4C4;"><img path="https://drive.lukechen.lc/images/waifu/20230616_101425.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1697" data-width="1200" style="background-color: #765A4B;"><img path="https://drive.lukechen.lc/images/waifu/20230616_101402.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3508" data-width="2480" style="background-color: #F1EDE0;"><img path="https://drive.lukechen.lc/images/waifu/20230501_014807.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1498" data-width="1059" style="background-color: #F7E4D6;"><img path="https://drive.lukechen.lc/images/waifu/20230508_095839.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2250" data-width="1500" style="background-color: #6C5646;"><img path="https://drive.lukechen.lc/images/waifu/20230508_101928.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1456" style="background-color: #F7F0ED;"><img path="https://drive.lukechen.lc/images/waifu/20230221_082731.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1196" style="background-color: #F1E1D6;"><img path="https://drive.lukechen.lc/images/waifu/20230516_145056.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1654" data-width="1054" style="background-color: #E6D3DB;"><img path="https://drive.lukechen.lc/images/waifu/20230508_095804.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4093" data-width="2894" style="background-color: #F6DFD2;"><img path="https://drive.lukechen.lc/images/waifu/20230228_224634.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1199" data-width="731" style="background-color: #3F5E83;"><img path="https://drive.lukechen.lc/images/waifu/20221231_232237.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1467" data-width="1440" style="background-color: #EAD8C4;"><img path="https://drive.lukechen.lc/images/waifu/20230403_010807.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1280" style="background-color: #F2E1D3;"><img path="https://drive.lukechen.lc/images/waifu/20230629_012652.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3541" data-width="2507" style="background-color: #EED1DB;"><img path="https://drive.lukechen.lc/images/waifu/20230330_015151.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1044" data-width="744" style="background-color: #21253A;"><img path="https://drive.lukechen.lc/images/waifu/20230602_191014.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2000" data-width="1406" style="background-color: #86A2CE;"><img path="https://drive.lukechen.lc/images/waifu/20230207_234400.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1448" style="background-color: #C987BE;"><img path="https://drive.lukechen.lc/images/waifu/20230305_010735.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2141" data-width="1207" style="background-color: #130F29;"><img path="https://drive.lukechen.lc/images/waifu/20230616_102604.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1778" data-width="1202" style="background-color: #FAE9D5;"><img path="https://drive.lukechen.lc/images/waifu/20230508_095853.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3410" data-width="2128" style="background-color: #E7E9F2;"><img path="https://drive.lukechen.lc/images/waifu/20230303_133731.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1513" data-width="1200" style="background-color: #B490A9;"><img path="https://drive.lukechen.lc/images/waifu/20230426_183341.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1389" style="background-color: #F0DFD9;"><img path="https://drive.lukechen.lc/images/waifu/20230508_211504.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="900" style="background-color: #F0E4D3;"><img path="https://drive.lukechen.lc/images/waifu/20230602_030953.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2682" style="background-color: #68654B;"><img path="https://drive.lukechen.lc/images/waifu/20221203_022105.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1167" style="background-color: #F3E5E1;"><img path="https://drive.lukechen.lc/images/waifu/20230506_175536.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2768" style="background-color: #0E222C;"><img path="https://drive.lukechen.lc/images/waifu/20221203_022127.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1044" data-width="744" style="background-color: #20222D;"><img path="https://drive.lukechen.lc/images/waifu/20230602_190941.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1197" data-width="793" style="background-color: #DBD8EC;"><img path="https://drive.lukechen.lc/images/waifu/20230617_235244.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1157" data-width="1637" style="background-color: #AB9AAB;"><img path="https://drive.lukechen.lc/images/waifu/20230514_035252.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2954" data-width="2089" style="background-color: #C690AA;"><img path="https://drive.lukechen.lc/images/waifu/20230507_105128.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1044" data-width="744" style="background-color: #21242F;"><img path="https://drive.lukechen.lc/images/waifu/20230602_190954.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1637" data-width="1157" style="background-color: #F6EEE5;"><img path="https://drive.lukechen.lc/images/waifu/20221116_084933.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="2048" style="background-color: #7A5144;"><img path="https://drive.lukechen.lc/images/cosplay/20221125_110525.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1288" style="background-color: #EDC7C0;"><img path="https://drive.lukechen.lc/images/waifu/20230616_101418.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2356" data-width="1404" style="background-color: #346185;"><img path="https://drive.lukechen.lc/images/waifu/20230616_011001.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1754" data-width="1240" style="background-color: #F8EAE3;"><img path="https://drive.lukechen.lc/images/waifu/20230504_022045.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1364" style="background-color: #EDEBEA;"><img path="https://drive.lukechen.lc/images/waifu/20230321_151606.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4089" data-width="2065" style="background-color: #FEFDFD;"><img path="https://drive.lukechen.lc/images/waifu/20230512_220812.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2618" style="background-color: #2D1E19;"><img path="https://drive.lukechen.lc/images/waifu/20230222_083831.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="3163" style="background-color: #162A32;"><img path="https://drive.lukechen.lc/images/waifu/20221203_022120.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1440" style="background-color: #F9F4F0;"><img path="https://drive.lukechen.lc/images/waifu/20230510_213714.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1792" data-width="1344" style="background-color: #EFDAD3;"><img path="https://drive.lukechen.lc/images/waifu/20230508_183633.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3500" data-width="2480" style="background-color: #919CB4;"><img path="https://drive.lukechen.lc/images/waifu/20230601_160217.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2046" data-width="1447" style="background-color: #E6D8E0;"><img path="https://drive.lukechen.lc/images/waifu/20230506_181127.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1854" data-width="1115" style="background-color: #F3D3C6;"><img path="https://drive.lukechen.lc/images/waifu/20230516_144851.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2046" data-width="1447" style="background-color: #ECD8E3;"><img path="https://drive.lukechen.lc/images/waifu/20230302_021016.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2576" style="background-color: #F0D7E5;"><img path="https://drive.lukechen.lc/images/waifu/20230514_132412.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1046" data-width="1568" style="background-color: #6F5C4D;"><img path="https://drive.lukechen.lc/images/cosplay/20230127_002152.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1430" style="background-color: #EDDCCB;"><img path="https://drive.lukechen.lc/images/waifu/20230514_213327.jpg" loading="lazy"></div>
+<div class="l-image" data-height="853" data-width="1200" style="background-color: #F1D2E0;"><img path="https://drive.lukechen.lc/images/waifu/20230610_013621.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1366" style="background-color: #D7947F;"><img path="https://drive.lukechen.lc/images/waifu/20230629_012714.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1374" style="background-color: #FBE5CE;"><img path="https://drive.lukechen.lc/images/waifu/20230227_002755.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1646" data-width="1268" style="background-color: #FDF3EA;"><img path="https://drive.lukechen.lc/images/waifu/20230508_210249.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2317" data-width="1622" style="background-color: #F4D5EB;"><img path="https://drive.lukechen.lc/images/waifu/20230515_010203.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2611" data-width="1605" style="background-color: #FDF5F3;"><img path="https://drive.lukechen.lc/images/waifu/20230220_193856.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1390" style="background-color: #B593A2;"><img path="https://drive.lukechen.lc/images/waifu/20230616_101413.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2857" style="background-color: #13251A;"><img path="https://drive.lukechen.lc/images/waifu/20221203_022112.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="752" style="background-color: #4E4E83;"><img path="https://drive.lukechen.lc/images/waifu/20221231_232234.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1754" data-width="1241" style="background-color: #E5C7C1;"><img path="https://drive.lukechen.lc/images/waifu/20230616_101432.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2071" data-width="1480" style="background-color: #F7E7DD;"><img path="https://drive.lukechen.lc/images/waifu/20230502_111343.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2124" data-width="1504" style="background-color: #F9ECE3;"><img path="https://drive.lukechen.lc/images/waifu/20230330_014925.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="1288" style="background-color: #272532;"><img path="https://drive.lukechen.lc/images/waifu/20230506_174817.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2183" style="background-color: #F1DCCF;"><img path="https://drive.lukechen.lc/images/waifu/20230504_021422.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2131" data-width="1500" style="background-color: #69584E;"><img path="https://drive.lukechen.lc/images/waifu/20230303_133916.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4012" data-width="2000" style="background-color: #F5E0EC;"><img path="https://drive.lukechen.lc/images/waifu/20230303_134107.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2753" data-width="1377" style="background-color: #F9EEE9;"><img path="https://drive.lukechen.lc/images/waifu/20230612_124024.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3508" data-width="2480" style="background-color: #F7F5F4;"><img path="https://drive.lukechen.lc/images/waifu/20230515_105430.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1404" data-width="1080" style="background-color: #846654;"><img path="https://drive.lukechen.lc/images/waifu/20230612_163806.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1505" data-width="1062" style="background-color: #455872;"><img path="https://drive.lukechen.lc/images/waifu/20230510_115139.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1396" style="background-color: #EAEDF6;"><img path="https://drive.lukechen.lc/images/waifu/20230612_163943.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1822" data-width="1200" style="background-color: #F9EFEA;"><img path="https://drive.lukechen.lc/images/waifu/20230510_213658.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1451" style="background-color: #F2E7DA;"><img path="https://drive.lukechen.lc/images/waifu/20230412_143201.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1152" data-width="768" style="background-color: #AD989E;"><img path="https://drive.lukechen.lc/images/waifu/20230510_114636.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2149" data-width="1463" style="background-color: #F9E6E2;"><img path="https://drive.lukechen.lc/images/waifu/20230222_144415.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1044" data-width="744" style="background-color: #ECD0E6;"><img path="https://drive.lukechen.lc/images/waifu/20230317_183534.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="848" style="background-color: #F0D5E5;"><img path="https://drive.lukechen.lc/images/waifu/20230412_010503.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3169" data-width="2000" style="background-color: #F3DACF;"><img path="https://drive.lukechen.lc/images/waifu/20230321_022435.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2281" data-width="1450" style="background-color: #F1E8CD;"><img path="https://drive.lukechen.lc/images/waifu/20230616_010929.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2275" data-width="1283" style="background-color: #9B9BA2;"><img path="https://drive.lukechen.lc/images/waifu/20230220_193538.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3541" data-width="2508" style="background-color: #2D232C;"><img path="https://drive.lukechen.lc/images/waifu/20230331_113626.jpg" loading="lazy"></div>
+<div class="l-image" data-height="854" data-width="1200" style="background-color: #EED8E4;"><img path="https://drive.lukechen.lc/images/waifu/20230508_102528.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2006" data-width="1416" style="background-color: #FEF1E3;"><img path="https://drive.lukechen.lc/images/waifu/20230317_183528.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2582" data-width="1656" style="background-color: #D2DDE9;"><img path="https://drive.lukechen.lc/images/waifu/20230220_193549.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2142" data-width="1319" style="background-color: #E7E8EA;"><img path="https://drive.lukechen.lc/images/waifu/20230220_193544.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4093" data-width="2894" style="background-color: #ADA4A9;"><img path="https://drive.lukechen.lc/images/waifu/20230223_004850.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="850" style="background-color: #F7EBDD;"><img path="https://drive.lukechen.lc/images/waifu/20230329_215946.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2222" data-width="1500" style="background-color: #FAF2F0;"><img path="https://drive.lukechen.lc/images/waifu/20230508_103828.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1306" style="background-color: #F6DBCA;"><img path="https://drive.lukechen.lc/images/waifu/20230616_010821.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1400" data-width="869" style="background-color: #FDF9F8;"><img path="https://drive.lukechen.lc/images/waifu/20230326_121727.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2896" data-width="1355" style="background-color: #ECE6EA;"><img path="https://drive.lukechen.lc/images/waifu/20230506_175418.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="840" style="background-color: #F0E3DA;"><img path="https://drive.lukechen.lc/images/waifu/20230602_030902.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1517" data-width="1000" style="background-color: #2B293A;"><img path="https://drive.lukechen.lc/images/waifu/20230605_114311.jpg" loading="lazy"></div>
+<div class="l-image" data-height="998" data-width="1724" style="background-color: #F5DBE6;"><img path="https://drive.lukechen.lc/images/waifu/20230508_211544.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1813" data-width="1231" style="background-color: #FAEDE4;"><img path="https://drive.lukechen.lc/images/waifu/20230508_095855.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2948" data-width="2031" style="background-color: #EDD9D1;"><img path="https://drive.lukechen.lc/images/waifu/20230331_113629.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1536" style="background-color: #7B4D61;"><img path="https://drive.lukechen.lc/images/cosplay/20230502_111403.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2126" style="background-color: #EBD8BC;"><img path="https://drive.lukechen.lc/images/waifu/20230616_010937.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1953" data-width="1194" style="background-color: #E9E5E0;"><img path="https://drive.lukechen.lc/images/waifu/20230506_180806.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1659" data-width="1100" style="background-color: #2B2029;"><img path="https://drive.lukechen.lc/images/waifu/20230628_144513.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1751" data-width="1883" style="background-color: #F3DFD3;"><img path="https://drive.lukechen.lc/images/waifu/20230509_123033.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1623" data-width="1147" style="background-color: #8F99BE;"><img path="https://drive.lukechen.lc/images/waifu/20230610_013722.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1246" style="background-color: #F4E5E2;"><img path="https://drive.lukechen.lc/images/waifu/20230330_014845.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1619" data-width="2048" style="background-color: #EAE6DE;"><img path="https://drive.lukechen.lc/images/waifu/20230302_013836.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2217" style="background-color: #9E9FAB;"><img path="https://drive.lukechen.lc/images/waifu/20230303_134046.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1130" data-width="800" style="background-color: #E9D6E3;"><img path="https://drive.lukechen.lc/images/waifu/20230214_014744.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1000" data-width="1414" style="background-color: #C6D8F4;"><img path="https://drive.lukechen.lc/images/waifu/20230302_021004.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1000" data-width="602" style="background-color: #A79D94;"><img path="https://drive.lukechen.lc/images/waifu/20230512_015825.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4092" data-width="2893" style="background-color: #F8F6F1;"><img path="https://drive.lukechen.lc/images/waifu/20230412_135806.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2508" data-width="1771" style="background-color: #F4ECDD;"><img path="https://drive.lukechen.lc/images/waifu/20230317_183419.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2082" data-width="1408" style="background-color: #FBEDE9;"><img path="https://drive.lukechen.lc/images/waifu/20230612_164030.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1199" data-width="848" style="background-color: #B5A08A;"><img path="https://drive.lukechen.lc/images/waifu/20230508_182243.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1132" data-width="800" style="background-color: #F8EFEA;"><img path="https://drive.lukechen.lc/images/waifu/20230610_013716.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2479" data-width="1428" style="background-color: #46584E;"><img path="https://drive.lukechen.lc/images/waifu/20230220_193852.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4093" data-width="2894" style="background-color: #F2E3D9;"><img path="https://drive.lukechen.lc/images/waifu/20230501_180941.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1684" data-width="1191" style="background-color: #F4E1D6;"><img path="https://drive.lukechen.lc/images/waifu/20230510_112426.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3072" data-width="1728" style="background-color: #F2F0C5;"><img path="https://drive.lukechen.lc/images/waifu/20230616_102242.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1237" style="background-color: #F6DED6;"><img path="https://drive.lukechen.lc/images/waifu/20230612_164032.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3358" data-width="2032" style="background-color: #F8EEE5;"><img path="https://drive.lukechen.lc/images/waifu/20230627_192751.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2951" data-width="1921" style="background-color: #4F617C;"><img path="https://drive.lukechen.lc/images/waifu/20230616_102254.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2097" data-width="1300" style="background-color: #EAD7DE;"><img path="https://drive.lukechen.lc/images/waifu/20230510_213543.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1366" data-width="964" style="background-color: #EEDCCF;"><img path="https://drive.lukechen.lc/images/waifu/20230214_015228.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1775" data-width="1200" style="background-color: #F1D2EB;"><img path="https://drive.lukechen.lc/images/waifu/20230413_101218.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="800" style="background-color: #F6E7D9;"><img path="https://drive.lukechen.lc/images/waifu/20230510_213653.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2313" data-width="1637" style="background-color: #F2E2D5;"><img path="https://drive.lukechen.lc/images/waifu/20230416_014418.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2353" data-width="1663" style="background-color: #F6F1EB;"><img path="https://drive.lukechen.lc/images/waifu/20230504_021550.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3717" data-width="2289" style="background-color: #1F1D28;"><img path="https://drive.lukechen.lc/images/waifu/20230612_124111.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="850" style="background-color: #6B5368;"><img path="https://drive.lukechen.lc/images/waifu/20230516_145511.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3000" data-width="2121" style="background-color: #F1E7CD;"><img path="https://drive.lukechen.lc/images/waifu/20230306_004048.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1920" data-width="1080" style="background-color: #80505F;"><img path="https://drive.lukechen.lc/images/waifu/20230424_224209.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2299" data-width="1500" style="background-color: #EFE5E0;"><img path="https://drive.lukechen.lc/images/waifu/20230610_012908.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1152" data-width="1152" style="background-color: #F3D3C7;"><img path="https://drive.lukechen.lc/images/waifu/20230510_114651.jpg" loading="lazy"></div>
+<div class="l-image" data-height="900" data-width="621" style="background-color: #232535;"><img path="https://drive.lukechen.lc/images/waifu/20230527_235051.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1228" data-width="868" style="background-color: #EFD7E1;"><img path="https://drive.lukechen.lc/images/waifu/20230508_095908.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1450" style="background-color: #F6D9E4;"><img path="https://drive.lukechen.lc/images/waifu/20230330_015619.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2484" data-width="1500" style="background-color: #EDD0DD;"><img path="https://drive.lukechen.lc/images/waifu/20221231_232239.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3000" data-width="2160" style="background-color: #705749;"><img path="https://drive.lukechen.lc/images/waifu/20230510_215059.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2696" style="background-color: #F6EAE4;"><img path="https://drive.lukechen.lc/images/waifu/20230612_124030.jpg" loading="lazy"></div>
+<div class="l-image" data-height="931" data-width="576" style="background-color: #F5E5D1;"><img path="https://drive.lukechen.lc/images/waifu/20230218_185704.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3000" data-width="2441" style="background-color: #EBDBCF;"><img path="https://drive.lukechen.lc/images/waifu/20230323_101049.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2734" data-width="1713" style="background-color: #BB8AB7;"><img path="https://drive.lukechen.lc/images/waifu/20221216_010551.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2393" data-width="1578" style="background-color: #F6E7D3;"><img path="https://drive.lukechen.lc/images/waifu/20230616_102101.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="862" style="background-color: #7A513E;"><img path="https://drive.lukechen.lc/images/waifu/20230617_235250.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1619" data-width="1260" style="background-color: #E8D6E2;"><img path="https://drive.lukechen.lc/images/waifu/20230509_004513.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1469" data-width="724" style="background-color: #EDE6ED;"><img path="https://drive.lukechen.lc/images/waifu/20230506_175501.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1483" data-width="1000" style="background-color: #29201B;"><img path="https://drive.lukechen.lc/images/waifu/20230605_114302.jpg" loading="lazy"></div>
+<div class="l-image" data-height="840" data-width="1120" style="background-color: #735566;"><img path="https://drive.lukechen.lc/images/waifu/20230508_205416.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2523" style="background-color: #F0E5DE;"><img path="https://drive.lukechen.lc/images/waifu/20221207_024819.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2006" data-width="1416" style="background-color: #EFE5CA;"><img path="https://drive.lukechen.lc/images/waifu/20230508_095918.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="777" style="background-color: #8EA2BB;"><img path="https://drive.lukechen.lc/images/waifu/20230617_235235.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1697" data-width="1200" style="background-color: #F8E3D9;"><img path="https://drive.lukechen.lc/images/waifu/20230510_213741.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4093" data-width="2894" style="background-color: #E6ADAB;"><img path="https://drive.lukechen.lc/images/waifu/20230616_101449.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1680" data-width="2240" style="background-color: #20262E;"><img path="https://drive.lukechen.lc/images/waifu/20230508_205343.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2194" data-width="1428" style="background-color: #EEE4E2;"><img path="https://drive.lukechen.lc/images/waifu/20230508_205406.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1412" data-width="1000" style="background-color: #F5D2E1;"><img path="https://drive.lukechen.lc/images/waifu/20230701_001510.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="848" style="background-color: #F4E7E1;"><img path="https://drive.lukechen.lc/images/waifu/20230510_111037.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1451" style="background-color: #66676E;"><img path="https://drive.lukechen.lc/images/waifu/20230323_022355.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1176" style="background-color: #FBF6F5;"><img path="https://drive.lukechen.lc/images/waifu/20230331_021841.jpg" loading="lazy"></div>
+<div class="l-image" data-height="900" data-width="675" style="background-color: #F3ECE5;"><img path="https://drive.lukechen.lc/images/waifu/20230508_103258.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2500" data-width="1683" style="background-color: #665D4C;"><img path="https://drive.lukechen.lc/images/waifu/20221231_233422.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1450" style="background-color: #4C5765;"><img path="https://drive.lukechen.lc/images/waifu/20230422_220959.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2915" style="background-color: #F0DFD8;"><img path="https://drive.lukechen.lc/images/waifu/20230319_113150.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4032" data-width="3024" style="background-color: #A8D3F5;"><img path="https://drive.lukechen.lc/images/cosplay/20230422_213506.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4093" data-width="2894" style="background-color: #EDDED8;"><img path="https://drive.lukechen.lc/images/waifu/20230228_224141.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4093" data-width="2894" style="background-color: #EDD7D0;"><img path="https://drive.lukechen.lc/images/waifu/20230501_015331.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2896" style="background-color: #272623;"><img path="https://drive.lukechen.lc/images/waifu/20230215_200225.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1451" style="background-color: #A8A9AE;"><img path="https://drive.lukechen.lc/images/waifu/20230323_022357.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1475" data-width="1000" style="background-color: #8F99C1;"><img path="https://drive.lukechen.lc/images/waifu/20230221_081143.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1280" style="background-color: #202032;"><img path="https://drive.lukechen.lc/images/waifu/20230613_172545.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1080" style="background-color: #B8A492;"><img path="https://drive.lukechen.lc/images/waifu/20230616_010741.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1362" style="background-color: #5A5C74;"><img path="https://drive.lukechen.lc/images/waifu/20230321_234948.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2572" data-width="1510" style="background-color: #DDDCEB;"><img path="https://drive.lukechen.lc/images/waifu/20230303_133751.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2000" data-width="2667" style="background-color: #D6DDE2;"><img path="https://drive.lukechen.lc/images/waifu/20230602_030709.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1771" data-width="1254" style="background-color: #FBF4EC;"><img path="https://drive.lukechen.lc/images/waifu/20230412_010507.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1001" data-width="795" style="background-color: #D7C5D3;"><img path="https://drive.lukechen.lc/images/waifu/20230218_185711.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1225" data-width="900" style="background-color: #FCF9F5;"><img path="https://drive.lukechen.lc/images/waifu/20230508_100906.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3362" data-width="2190" style="background-color: #EAE3D7;"><img path="https://drive.lukechen.lc/images/waifu/20230612_124005.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2915" data-width="2068" style="background-color: #2C1928;"><img path="https://drive.lukechen.lc/images/waifu/20230510_213554.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3508" data-width="2480" style="background-color: #F2EEEC;"><img path="https://drive.lukechen.lc/images/waifu/20230515_105458.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2258" data-width="1270" style="background-color: #F9DFD2;"><img path="https://drive.lukechen.lc/images/waifu/20230616_102539.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1033" data-width="732" style="background-color: #F6E3DD;"><img path="https://drive.lukechen.lc/images/waifu/20230218_185709.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1736" data-width="1228" style="background-color: #B5988F;"><img path="https://drive.lukechen.lc/images/waifu/20230330_014541.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1800" data-width="1275" style="background-color: #32192B;"><img path="https://drive.lukechen.lc/images/waifu/20230503_001729.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1152" data-width="2048" style="background-color: #B191A7;"><img path="https://drive.lukechen.lc/images/waifu/20230313_011618.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3508" data-width="2480" style="background-color: #F3F0F0;"><img path="https://drive.lukechen.lc/images/waifu/20230515_105348.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1894" data-width="1339" style="background-color: #E6E6F3;"><img path="https://drive.lukechen.lc/images/waifu/20230510_112540.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2979" style="background-color: #F9EFE2;"><img path="https://drive.lukechen.lc/images/waifu/20230602_030711.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="3215" style="background-color: #F1EACD;"><img path="https://drive.lukechen.lc/images/waifu/20230514_213527.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1416" data-width="1003" style="background-color: #C586B0;"><img path="https://drive.lukechen.lc/images/waifu/20221222_111239.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1454" data-width="1024" style="background-color: #EAE8E5;"><img path="https://drive.lukechen.lc/images/waifu/20230323_022310.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1366" data-width="900" style="background-color: #F5DBB7;"><img path="https://drive.lukechen.lc/images/waifu/20230617_040656.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1228" data-width="876" style="background-color: #8BA997;"><img path="https://drive.lukechen.lc/images/waifu/20221116_084848.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2674" style="background-color: #E3E9F6;"><img path="https://drive.lukechen.lc/images/waifu/20230612_163726.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2808" style="background-color: #BADEFC;"><img path="https://drive.lukechen.lc/images/waifu/20230629_013021.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1416" data-width="1003" style="background-color: #EBEAF2;"><img path="https://drive.lukechen.lc/images/waifu/20230503_115927.jpg" loading="lazy"></div>
+<div class="l-image" data-height="900" data-width="593" style="background-color: #655761;"><img path="https://drive.lukechen.lc/images/waifu/20230508_103218.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2142" data-width="1213" style="background-color: #FAEFE2;"><img path="https://drive.lukechen.lc/images/waifu/20230616_102510.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1896" data-width="1200" style="background-color: #715460;"><img path="https://drive.lukechen.lc/images/waifu/20230328_014328.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="849" style="background-color: #EDE0D2;"><img path="https://drive.lukechen.lc/images/waifu/20221116_084902.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2048" data-width="1450" style="background-color: #EAEADC;"><img path="https://drive.lukechen.lc/images/waifu/20230323_022151.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2177" data-width="1500" style="background-color: #F9ECE5;"><img path="https://drive.lukechen.lc/images/waifu/20230510_213746.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4096" data-width="2349" style="background-color: #131740;"><img path="https://drive.lukechen.lc/images/waifu/20230612_124039.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="857" style="background-color: #796641;"><img path="https://drive.lukechen.lc/images/waifu/20230303_133835.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1637" data-width="1158" style="background-color: #F2E7D7;"><img path="https://drive.lukechen.lc/images/waifu/20230508_095811.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1505" data-width="1062" style="background-color: #F5E7D9;"><img path="https://drive.lukechen.lc/images/waifu/20230317_182646.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2928" data-width="1631" style="background-color: #D5E7F2;"><img path="https://drive.lukechen.lc/images/waifu/20230630_114332.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1950" data-width="1447" style="background-color: #F8EAE4;"><img path="https://drive.lukechen.lc/images/waifu/20230508_205918.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4093" data-width="2894" style="background-color: #B695A4;"><img path="https://drive.lukechen.lc/images/waifu/20230228_224145.jpg" loading="lazy"></div>
+<div class="l-image" data-height="2403" data-width="1569" style="background-color: #F8E9E2;"><img path="https://drive.lukechen.lc/images/waifu/20230221_082324.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1726" data-width="982" style="background-color: #FBE7D7;"><img path="https://drive.lukechen.lc/images/waifu/20230331_021840.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3250" data-width="2042" style="background-color: #F4E5DF;"><img path="https://drive.lukechen.lc/images/waifu/20230321_151616.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1584" data-width="2240" style="background-color: #F1D5DD;"><img path="https://drive.lukechen.lc/images/waifu/20230508_205300.jpg" loading="lazy"></div>
+<div class="l-image" data-height="3541" data-width="2507" style="background-color: #FAF2EF;"><img path="https://drive.lukechen.lc/images/waifu/20230330_015430.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="758" style="background-color: #EEE0E6;"><img path="https://drive.lukechen.lc/images/waifu/20230618_000145.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1600" data-width="1141" style="background-color: #91A2BE;"><img path="https://drive.lukechen.lc/images/waifu/20230610_013642.jpg" loading="lazy"></div>
+<div class="l-image" data-height="1200" data-width="848" style="background-color: #6C643C;"><img path="https://drive.lukechen.lc/images/waifu/20221116_084903.jpg" loading="lazy"></div>
+</div>
+</details>
+
+
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            ©
+            2025 - 2025 LC
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @Luke Chen
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent">
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script src="https://giscus.app/client.js" data-repo="LukeChen-j/hexo" data-repo-id="R_kgDONwHWow" data-category="Announcements" data-category-id="DIC_kwDONwHWo84CmYHc" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="noborder_light" data-lang="zh-CN" crossorigin="" async=""></script>
+
+
+
+
+
+    
+
+
+<canvas id="background" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"></canvas>
+<script src="/js/background.min.js"></script>
+</body></html>
