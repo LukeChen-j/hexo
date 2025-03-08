@@ -45,9 +45,9 @@ mixins.galleryLayout = {
 			let horizontalOffset = 0; // 设置横向布局偏移 = 0
 			let verticalOffset = 0;   // 设置纵向布局偏移 = 0
 			const layoutWidth = gallery.galleryWidth; // 设置布局宽度为galleryWidth
-			let targetArea = 100000;   // 设置目标面积
+			let targetArea = 125000;   // 设置目标面积
 			if (layoutWidth < 500)
-				targetArea = 0.4 * layoutWidth * layoutWidth;
+				targetArea = 0.5 * layoutWidth * layoutWidth;
 			const columnSpacing = 10;  // 设置行内间距为10 (这里我更倾向于使用 columnSpacing，更符合英文习惯)
 			const rowSpacing = 10;     // 设置行间间距为10
 			let totalHeight = verticalOffset - rowSpacing; // 设置总高度为 纵向布局偏移-1*行间间距
