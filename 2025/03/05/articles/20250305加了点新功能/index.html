@@ -45,6 +45,7 @@
 
 <script src="/js/gallery.js"></script>
 
+	<style>.page-current .page-num{color:#999;border-radius:5px;display:inline-block;height:35px;line-height:35px;margin:0 7px;padding:5px;width:35px;}.page-current .page-num:hover{background:#66afef;color:#fff;opacity:1;}</style>
 <!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" integrity="sha256-TThEtR+XalhWKkfF383YLOrI50NGNeIqrzS+q08afrY=" crossorigin="anonymous"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
 <body>
     <div id="layout">
@@ -242,18 +243,17 @@
 <!-- page-current 的 margin-top 本来是 50px 的，为了美观改了（ -->
 
 <div class="page-current" style="align-items: center; display: flex; font-weight: bold; justify-content: center; margin-top: 0px; text-align: center; width: 100%;">
-	<a class="page-num" style="color: #999; border-radius: 5px; display: inline-block; height: 35px; line-height: 35px; margin: 0 7px; padding: 5px; width: 35px;"><i class="fa-solid fa-caret-left fa-fw"></i></a>
-	<a class="page-num" style="color: #999; border-radius: 5px; display: inline-block; height: 35px; line-height: 35px; margin: 0 7px; padding: 5px; width: 35px;">1</a>
+	<a class="page-num"><i class="fa-solid fa-caret-left fa-fw"></i></a>
+	<a class="page-num">1</a>
 	<span class="page-omit" style="border-radius: 5px; display: inline-block; height: 35px; line-height: 35px; margin: 0 7px; padding: 5px; width: 35px;">...</span>
 	<span class="current" style="border-radius: 5px; color: #da0a51; display: inline-block; height: 35px; line-height: 35px; margin: 0 7px; padding: 5px; width: 35px;">2</span>
-	<a class="page-num" style="color: #999; border-radius: 5px; display: inline-block; height: 35px; line-height: 35px; margin: 0 7px; padding: 5px; width: 35px;"> 3 </a>
-	<a class="page-num" style="color: #999; border-radius: 5px; display: inline-block; height: 35px; line-height: 35px; margin: 0 7px; padding: 5px; width: 35px;"> 4 </a>
+	<a class="page-num"> 3 </a>
+	<a class="page-num"> 4 </a>
 	<span class="page-omit" style="border-radius: 5px; display: inline-block; height: 35px; line-height: 35px; margin: 0 7px; padding: 5px; width: 35px;">...</span>
-	<a class="page-num" style="color: #999; border-radius: 5px; display: inline-block; height: 35px; line-height: 35px; margin: 0 7px; padding: 5px; width: 35px;">5</a>
-	<a class="page-num" style="color: #999; border-radius: 5px; display: inline-block; height: 35px; line-height: 35px; margin: 0 7px; padding: 5px; width: 35px;"><i class="fa-solid fa-caret-right fa-fw"></i></a>
+	<a class="page-num">5</a>
+	<a class="page-num"><i class="fa-solid fa-caret-right fa-fw"></i></a>
 </div>
 
-<p>（悬停效果还需要在 css 里面设置，摆了，就当这是个截图吧）</p>
 <p>总之是改了一下，塞了更多的页码，翻页应该会容易。页码多了在我的手机上会很挤，顺便又做了一个给手机用的页码，根据浏览器页面宽度自动切换。</p>
 <hr>
 <p>在顶部菜单加入了 <a href="/articles/1/">Articles</a> 、<a href="/categories/%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/">一些图片</a> 和 <a href="/categories/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/">另一些图片</a> 。</p>
