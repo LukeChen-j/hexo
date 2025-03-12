@@ -440,12 +440,12 @@
     color: #555;
     display: inline-block;
     margin-left: 60px;
-    margin-right: 5px;
+    margin-right: 35px;
 }
 #menu #desktop-menu a {
     color: #555;
     display: inline-block;
-    margin-left: 30px;
+    margin-right: 30px;
 }
 #menu #mobile-menu {
     min-height: 50px;
@@ -1085,3 +1085,53 @@ ol li {
 
 
 
+#desktop-menu {
+    overflow-x: auto; /* 允许水平方向滚动，当内容超出容器宽度时出现滚动条 */
+    white-space: nowrap; /* 强制子元素不换行，保持在一行 */
+    overflow-y: hidden;
+}
+#desktop-menu {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    scrollbar-color: rgba(192, 192, 192, 0.3) rgba(0, 0, 0, 0.0);
+    scrollbar-width: thin;
+    word-wrap: break-word;
+}
+#desktop-menu::-webkit-scrollbar {
+    height: 12px;
+    width: 12px;
+}
+#desktop-menu::-webkit-scrollbar-thumb {
+    background: #rgba(192, 192, 192, 0.3)
+        linear-gradient(
+            45deg,
+            #fff6 25%,
+            transparent 25%,
+            transparent 50%,
+            #fff6 50%,
+            #fff6 75%,
+            transparent 75%,
+            transparent
+        );
+    border: 3px solid #rgba(0, 0, 0, 0.0);
+    border-radius: 100px;
+}
+#desktop-menu::-webkit-scrollbar-track {
+    border-radius: 0;
+    background: #rgba(0, 0, 0, 0.0);
+    border-radius: 100px;
+}
+#desktop-menu::-webkit-scrollbar-thumb:hover {
+    background: #rgba(233, 233, 233, 0.3)
+        linear-gradient(
+            45deg,
+            #fff8 25%, /* 这里可以稍微调整白色透明度 */
+            transparent 25%,
+            transparent 50%,
+            #fff8 50%,
+            #fff8 75%,
+            transparent 75%,
+            transparent
+        );
+}
