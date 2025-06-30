@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS Snow Effect</title>
+ <style>
+     body {
+         margin: 0;
+         overflow: hidden;
+         /* 设置一个深色背景 */
+         background-color: #101a2b; 
+          color: #fff;
+          font-family: sans-serif;
+     }
+     canvas {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        /* 确保canvas在内容之下 */
+         z-index: -1; 
+        /* 关键: 允许鼠标事件穿透canvas点击下方内容, 但我们仍在window上监听事件 */
+         pointer-events: none; 
+     }
+      .content {
+         position: relative;
+         z-index: 1;
+         padding: 20px;
+         text-align: center;
+         margin-top: 40vh;
+          text-shadow: 0 0 5px #000;
+     }
+ </style>
+</head>
+<body>
+    
+    <canvas id="snowBackground"></canvas>
+
+     <div class="content">
+          <h1>Move your mouse</h1>
+           <p>Snow effect with perspective and mouse interaction.</p>
+     </div>
+
+    <script src="snow.js"></script>
+</body>
+</html>
