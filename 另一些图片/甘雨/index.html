@@ -1,0 +1,305 @@
+<!DOCTYPE html><html lang="zh-cn"><head>
+    <meta charset="utf-8">
+    <title>另一些图片：甘雨 | LC</title>
+    <meta name="author" content="Luke Chen">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="icon" href="/images/icon.png">
+    <link rel="preconnect" href="https://s4.zstatic.net">
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.cn">
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&amp;family=Lexend:wght@400;500;600;700;800;900&amp;family=Noto+Sans+SC:wght@400;500;600;700;800;900&amp;display=swap">
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<script src="/js/gallery.js"></script>
+
+	<style>.article {max-width: 100%; width: 1200px} .article .content {margin-top: 0px} h1 {text-align: center} #archives {width: 100%; margin-top: 0px} #archives .categories-tags {max-width: 100%; max-height: 60px; overflow: hidden; transition: max-height 0.3s ease-in-out} #archives .categories-tags:hover {max-height: var(--expanded-height)} #archives .categories-tags span {margin: 10px}</style>
+	<script>document.addEventListener("DOMContentLoaded", () => {const expandable = document.querySelector(".categories-tags"); if (expandable) {const fullHeight = expandable.scrollHeight + 'px'; expandable.style.setProperty('--expanded-height', fullHeight);}});</script>
+<!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css" integrity="sha256-TThEtR+XalhWKkfF383YLOrI50NGNeIqrzS+q08afrY=" crossorigin="anonymous"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/37.json.gif">
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LC</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span> Home</span>
+        </a>
+        
+        <a href="/articles/1">
+            <i class="fa-solid fa-newspaper fa-fw"></i>
+            <span> Articles</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span> About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span> Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span> Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span> Tags</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-magnifying-glass fa-fw"></i>
+            <span> Search</span>
+        </a>
+        
+        <a href="/%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87">
+            <i class="fa-solid fa-images fa-fw"></i>
+            <span> 一些图片</span>
+        </a>
+        
+        <a href="/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87">
+            <i class="fa-regular fa-images fa-fw"></i>
+            <span> 另一些图片</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span> LC</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/articles/1">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-newspaper fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Articles</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-magnifying-glass fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Search</div>
+                    </div>
+                </a>
+                
+                <a href="/%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-images fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">一些图片</div>
+                    </div>
+                </a>
+                
+                <a href="/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-regular fa-images fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">另一些图片</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>另一些图片：甘雨
+</h1>
+    </div>
+    <div class="info">
+        
+        
+        
+    </div>
+    
+    <div class="content" v-pre="">
+        <div id="archives"><div class="categories-tags">
+<span><a href="/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/%E5%85%AB%E9%87%8D%E7%A5%9E%E5%AD%90/" style="background: #03a9f4"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i></span>八重神子</a></span>
+<span><a href="/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/%E5%8F%AF%E8%8E%89/" style="background: #ff7d73"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i></span>可莉</a></span>
+<span><a href="/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/%E5%A6%AE%E9%9C%B2/" style="background: #00a596"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i></span>妮露</a></span>
+<span><a href="/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/%E5%AE%B5%E5%AE%AB/" style="background: #03a9f4"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i></span>宵宫</a></span>
+<span><a href="/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/%E7%8F%8A%E7%91%9A%E5%AE%AB%E5%BF%83%E6%B5%B7/" style="background: #ffa2c4"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i></span>珊瑚宫心海</a></span>
+<span><a href="/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/%E7%8F%90%E9%9C%B2%E7%8F%8A/" style="background: #00bcd4"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i></span>珐露珊</a></span>
+<span><a href="/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/%E7%94%98%E9%9B%A8/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i></span>甘雨</a></span>
+<span><a href="/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/%E7%A5%9E%E9%87%8C%E7%BB%AB%E5%8D%8E/" style="background: #03a9f4"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i></span>神里绫华</a></span>
+<span><a href="/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/%E7%BA%B3%E8%A5%BF%E5%A6%B2/" style="background: #00a596"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i></span>纳西妲</a></span>
+<span><a href="/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/%E8%8A%AD%E8%8A%AD%E6%8B%89/" style="background: #03a9f4"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i></span>芭芭拉</a></span>
+<span><a href="/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/%E8%8A%B1%E7%81%AB/" style="background: #00bcd4"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i></span>花火</a></span>
+<span><a href="/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/%E8%8E%AB%E5%A8%9C/" style="background: #ff7d73"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i></span>莫娜</a></span>
+<span><a href="/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/%E8%8F%B2%E8%B0%A2%E5%B0%94/" style="background: #ffa2c4"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i></span>菲谢尔</a></span>
+<span><a href="/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/%E8%97%BF%E8%97%BF/" style="background: #ff7d73"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i></span>藿藿</a></span>
+<span><a href="/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/%E9%9B%B7%E5%A7%86/" style="background: #ffa2c4"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i></span>雷姆</a></span>
+<span><a href="/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/%E9%9D%92%E9%9B%80/" style="background: #ff7d73"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i></span>青雀</a></span>
+<span><a href="/%E5%8F%A6%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87/%E9%BB%91%E5%A1%94/" style="background: #03a9f4"><span class="icon"><i class="fa-solid fa-tags fa-fw"></i></span>黑塔</a></span>
+</div></div>
+
+<div class="l-gallery">
+<div class="l-image" data-height="2619" data-width="1498" style="background-color: #EDD2C8;"><img path="https://drive.lukechen.lc/images/cosplay/20240118_115920.jpg" loading="lazy"></div>
+<div class="l-image" data-height="4066" data-width="2637" style="background-color: #DBEBF9;"><img path="https://drive.lukechen.lc/images/cosplay/20221219_033220.jpg" loading="lazy"></div>
+</div>
+
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            ©
+            2025 - 2025 LC
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @Luke Chen
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent">
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script src="https://giscus.app/client.js" data-repo="LukeChen-j/hexo" data-repo-id="R_kgDONwHWow" data-category="Announcements" data-category-id="DIC_kwDONwHWo84CmYHc" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="noborder_light" data-lang="zh-CN" crossorigin="" async=""></script>
+
+
+
+
+
+    
+<canvas id="background" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"></canvas>
+<script src="/js/background.min.js"></script>
+
+
+</body></html>
